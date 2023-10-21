@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+{% endblock %}
+
+{% block title %} {% if form.instance.pk %}Изменить крой детальный {% else %}Создать крой детальный{% endif %} {% endblock %}
+
+{% block content %}
+<div class="container">
+   <h5>{% if form.instance.pk %}Изменить крой детальный {% else %}Создать крой детальный{% endif %}</h5>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Сохранить">
+    </form>
+    <a href="{% url 'kroy-detail-list' %}">Назад на детальный список</a>
+
+</div>
+{% endblock %}
+
+{% block js_files %}
+<script src="{% static 'main/js/script.js' %}"></script>
+
+{% endblock %}

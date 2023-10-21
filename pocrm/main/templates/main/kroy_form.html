@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+{% endblock %}
+
+{% block title %} {% if form.instance.pk %}Изменить крой{% else %}Создать Кроя{% endif %} {% endblock %}
+
+{% block content %}
+<div class="container">
+ <h4>{% if form.instance.pk %}Изменить крой{% else %}Создать кроя{% endif %}</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Сохранить">
+    </form>
+    <a href="{% url 'kroy-list' %}">Вернуться к списку кроя</a>
+
+
+{% include 'main/partials/_kroy_list.html' %}
+
+</div>
+
+
+{% endblock %}
+
+{% block js_files %}
+<script src="{% static 'main/js/script.js' %}"></script>
+
+{% endblock %}
+ody>
+</html>
