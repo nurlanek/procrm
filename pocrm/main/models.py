@@ -12,6 +12,8 @@ class Kroy(models.Model):
     edinitsa = models.IntegerField(null=True, blank=True, verbose_name='Единица')
     description = models.TextField(null=True, blank=True, verbose_name='Примечение')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создание')
+    is_active = models.BooleanField(default=True, verbose_name='Активен')
+
 
 
     def __str__(self):
@@ -19,12 +21,13 @@ class Kroy(models.Model):
 
 class Kroy_detail(models.Model):
     class Meta:
-            verbose_name = ('Крой')
+            verbose_name = ('Крой детально')
     kroy = models.ForeignKey(Kroy, on_delete=models.CASCADE, verbose_name='Крой')
     pachka = models.CharField(max_length=200, verbose_name='Пачка')
     razmer = models.CharField(max_length=200, verbose_name='Размер')
     rost = models.CharField(max_length=200, verbose_name='Рост')
     stuk = models.IntegerField(verbose_name='Штук')
+
 
     def __str__(self):
         return self.pachka

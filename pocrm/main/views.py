@@ -13,14 +13,10 @@ def index(request):
 class KroyListView(ListView):
     model = Kroy
     template_name = 'main/kroy_list.html'
+    def get_queryset(self):
+        # Filter the Kroy objects where is_active is True
+        return Kroy.objects.filter(is_active=True)
 
-def KroyCreateListView(request):
-
-    context = {
-        "kroy": Kroy.objects.all(),
-    }
-
-    return render(request, "main/kroy_form.html", context)
 class KroyCreateView(CreateView):
     model = Kroy
     form_class = KroyForm

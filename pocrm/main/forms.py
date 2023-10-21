@@ -4,9 +4,9 @@ from .models import Kroy, Kroy_detail
 class KroyForm(forms.ModelForm):
     class Meta:
         model = Kroy
-        fields = '__all__'  # You can specify specific fields if needed
+        fields = ['kroy_no', 'name', 'ras_tkani', 'ras_dublerin', 'edinitsa', 'description']
 
 class KroyDetailForm(forms.ModelForm):
     class Meta:
         model = Kroy_detail
-        fields = '__all__'  # You can specify specific fields if needed
+        fields = ['kroy', 'pachka', 'razmer', 'rost', 'stuk']  # You can specify specific fields if needed

@@ -12,7 +12,27 @@
    <h5>{% if form.instance.pk %}Изменить крой детальный {% else %}Создать крой детальный{% endif %}</h5>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="row mt-2 ">
+    <div class="col-md-2">{{ form.kroy.label_tag }}</div>
+    <div class="col-6 col-md-3">{{ form.kroy }}</div>
+  </div>
+    <div class="row mt-2 ">
+    <div class="col-md-2">{{ form.pachka.label_tag }}</div>
+    <div class="col-6 col-md-3">{{ form.pachka }}</div>
+  </div>
+     <div class="row mt-2 ">
+    <div class="col-md-2">{{ form.razmer.label_tag }}</div>
+    <div class="col-6 col-md-3">{{ form.razmer }}</div>
+  </div>
+     <div class="row mt-2 ">
+    <div class="col-md-2">{{ form.rost.label_tag }}</div>
+    <div class="col-6 col-md-3">{{ form.rost }}</div>
+  </div>
+     <div class="row mt-2 ">
+    <div class="col-md-2">{{ form.stuk.label_tag }}</div>
+    <div class="col-6 col-md-3">{{ form.stuk }}</div>
+  </div>
+
         <input type="submit" value="Сохранить">
     </form>
     <a href="{% url 'kroy-detail-list' %}">Назад на детальный список</a>
