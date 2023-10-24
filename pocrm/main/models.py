@@ -31,3 +31,22 @@ class Kroy_detail(models.Model):
 
     def __str__(self):
         return self.pachka
+
+
+class Uchastok(models.Model):
+    class Meta:
+            verbose_name = ('Участок')
+    name = models.CharField(max_length=150, verbose_name='Участок')
+
+    def __str__(self):
+        return self.name
+
+class Masterdata(models.Model):
+    class Meta:
+            verbose_name = ('Общая таблица')
+    kroy_no = models.IntegerField(verbose_name='Крой номер')
+    status = models.CharField(max_length=50, verbose_name='Статус')
+    edinitsa = models.IntegerField(verbose_name='Единица')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
+    is_active = models.BooleanField(default=True, verbose_name='Активен')
+    description = models.TextField(null=True, blank=True, verbose_name='Примечение')

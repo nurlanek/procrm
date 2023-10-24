@@ -1,5 +1,5 @@
 from django import forms
-from .models import Kroy, Kroy_detail
+from .models import Kroy, Kroy_detail, Masterdata
 
 class KroyForm(forms.ModelForm):
     class Meta:
@@ -10,3 +10,13 @@ class KroyDetailForm(forms.ModelForm):
     class Meta:
         model = Kroy_detail
         fields = ['kroy', 'pachka', 'razmer', 'rost', 'stuk']  # You can specify specific fields if needed
+
+"""class MasterdataForm(forms.ModelForm):
+    class Meta:
+        model = Masterdata
+        fields = ['kroy_no', 'status', 'edinitsa']
+"""
+
+
+
+
