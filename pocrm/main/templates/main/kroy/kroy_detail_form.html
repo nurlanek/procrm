@@ -32,11 +32,10 @@
     <div class="col-md-2">{{ form.stuk.label_tag }}</div>
     <div class="col-6 col-md-3">{{ form.stuk }}</div>
   </div>
-
-        <input type="submit" value="Сохранить">
+        <input type="submit" value="Сохранить" class="btn btn-secondary">
     </form>
-    <a href="{% url 'kroy-detail-list' %}">Назад на детальный список</a>
 
+    <a href="{% url 'kroy-detail-list' %}">Назад на детальный список</a>
 </div>
 {% endblock %}
 

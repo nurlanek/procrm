@@ -14,7 +14,14 @@ class Kroy(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создание')
     is_active = models.BooleanField(default=True, verbose_name='Активен')
 
+    def update_edinitsa(self):
+        # Calculate the sum of stuk from related Kroy_detail objects
+        total_stuk = self.kroy_detail_set.aggregate(total_stuk=models.Sum('stuk'))['total_stuk']
 
+        if total_stuk is not None:
+            # Add the sum to the edinitsa field
+            self.edinitsa = self.edinitsa + total_stuk
+            self.save()
 
     def __str__(self):
         return str(self.kroy_no)
@@ -50,3 +57,5 @@ class Masterdata(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     is_active = models.BooleanField(default=True, verbose_name='Активен')
     description = models.TextField(null=True, blank=True, verbose_name='Примечение')
+
+

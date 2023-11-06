@@ -16,7 +16,9 @@ class KroyDetailForm(forms.ModelForm):
         model = Masterdata
         fields = ['kroy_no', 'status', 'edinitsa']
 """
-
-
-
+class MasterdataSearchForm(forms.Form):
+    start_date = forms.DateField(label='Start Date', required=False)
+    end_date = forms.DateField(label='End Date', required=False)
+    status_search = forms.CharField(label='Search by Status', required=False)
+    kroy_no_search = forms.CharField(label='Search by Kroy_no', required=False)
 

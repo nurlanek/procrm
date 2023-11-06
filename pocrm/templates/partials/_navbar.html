@@ -12,30 +12,34 @@
                 <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'kroy-list' %}">Список Крой</a>
+                <a class="nav-link" href="{% url 'kroy-list' %}">Крой</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'kroy-detail-list' %}">Список Крой детальный</a>
+                <a class="nav-link" href="{% url 'kroy-detail-list' %}">Крой детальный</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'masterdata_list' %}">Рабочий процесс</a>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-
-            <li class="nav-item">
-                <a class="nav-link" href="">Logout</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Welcome, </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Register</a>
-            </li>
-
-
-
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'masterdatauser_list' %}">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Привет,{{user.username}} </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
         </ul>
         </div>
     </div>

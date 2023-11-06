@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+{% endblock %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div class="container">
+<table class="table caption-top">
+        <caption>Рабочий процесс</caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Крой номер</th>
+                <th scope="col">Участок</th>
+                <th scope="col">Единица</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Примечение</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for masterdata in masterdata_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ masterdata.kroy_no }}</td>
+                <td>{{ masterdata.status }}</td>
+                <td>{{ masterdata.edinitsa }}</td>
+                <td>{{ masterdata.created|date:"d.m.Y H:i" }}</td>
+                <td>{{ masterdata.description }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+
+
+{% endblock %}
+
+{% block js_files %}
+<script src="{% static 'main/js/script.js' %}"></script>
+
+{% endblock %}

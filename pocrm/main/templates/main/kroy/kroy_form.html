@@ -36,21 +36,10 @@
     <div class="col-md-2">{{ form.description.label_tag }}</div>
     <div class="col-6 col-md-3">{{ form.description }}</div>
   </div>
-      <button type="submit" class="btn btn-primary">Сохранить</button>
+      <button type="submit" class="btn btn-secondary">Сохранить</button>
     </form>
-
- <!--   <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-
-
-        <input type="submit" value="Сохранить">
-    </form>-->
     <a href="{% url 'kroy-list' %}">Вернуться к списку кроя</a>
-
-
 </div>
-
 
 {% endblock %}
 
@@ -58,5 +47,4 @@
 <script src="{% static 'main/js/script.js' %}"></script>
 
 {% endblock %}
-ody>
-</html>
+
