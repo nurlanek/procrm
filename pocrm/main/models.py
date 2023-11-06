@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 
 class Kroy(models.Model):
     class Meta:
@@ -52,10 +54,15 @@ class Masterdata(models.Model):
     class Meta:
             verbose_name = ('Общая таблица')
     kroy_no = models.IntegerField(verbose_name='Крой номер')
-    status = models.CharField(max_length=50, verbose_name='Статус')
+    uchastok = models.ForeignKey(Uchastok, on_delete=models.CASCADE, verbose_name='Участок')
     edinitsa = models.IntegerField(verbose_name='Единица')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     is_active = models.BooleanField(default=True, verbose_name='Активен')
     description = models.TextField(null=True, blank=True, verbose_name='Примечение')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
 
-
+class UserUchastok(models.Model):
+    class Meta:
+            verbose_name = ('Пользователь для участка')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    uchastok = models.ForeignKey(Uchastok, on_delete=models.CASCADE, verbose_name='Участок')

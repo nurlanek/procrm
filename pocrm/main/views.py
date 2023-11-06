@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, UpdateView
 from .models import Kroy, Kroy_detail, Uchastok
 from .forms import KroyForm, KroyDetailForm, Masterdata, MasterdataSearchForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage
 from django.urls import reverse_lazy
 from django.db.models import Max
@@ -13,9 +15,12 @@ def index(request):
     return render(request, "main/index.html")
 
 def create_masterdata(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+
     if request.method == 'POST':
         kroy_no = request.POST.get('kroy_no')
-        status = request.POST.get('status')
+        uchastok = request.POST.get('uchastok')
         edinitsa = request.POST.get('edinitsa')
 
         try:
@@ -23,9 +28,11 @@ def create_masterdata(request):
         except ValueError:
             edinitsa = 0  # Default value if parsing fails
         # Create a new Masterdata object and save it to the database
+        uchastok = get_object_or_404(Uchastok, pk=uchastok)
+
         masterdata = Masterdata(
             kroy_no=kroy_no,
-            status=status,
+            uchastok=uchastok,
             edinitsa = edinitsa
             # Add other fields here as needed
         )
@@ -121,13 +128,14 @@ class KroyDetailUpdateView(UpdateView):
     template_name = 'main/kroy/kroy_detail_form.html'
     success_url = '/kroy-detail/'
 
-class MasterdatauserListView(ListView):
+@login_required
+def MasterdatauserListView(request):
+    # Filter the data based on the logged-in user
+    masterdata_list = Masterdata.objects.filter(user=request.user)
+    return render(request, 'main/masterdatauser_list.html', {'masterdata_list': masterdata_list})
 
-    model = Masterdata
-    template_name = 'main/masterdatauser_list.html'
-    #context_object_name = 'index'
-    def dispatch(self, request, *args, **kwargs):
+    """def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect("login")
-        return super().dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)"""
 

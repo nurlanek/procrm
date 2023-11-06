@@ -18,7 +18,7 @@ urlpatterns = [
     path('kroy-detail/update/<int:pk>/', KroyDetailUpdateView.as_view(), name='kroy-detail-update'),
     path('create_masterdata', views.create_masterdata, name='create_masterdata'),
     path('masterdata', MasterdataListView.as_view(), name='masterdata_list'),
-    path('masterdatauser', MasterdatauserListView.as_view(), name='masterdatauser_list'),
+    path('masterdatauser', views.MasterdatauserListView, name='masterdatauser_list'),
 
     # Changed the URL path to a different name
 

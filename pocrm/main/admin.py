@@ -1,11 +1,13 @@
 from django.contrib import admin
-from .models import Kroy_detail, Kroy, Uchastok, Masterdata
+from .models import Kroy_detail, Kroy, Uchastok, Masterdata, UserUchastok
 from django.utils.safestring import mark_safe
 
 
 # Register your models here.
+class UserUchastokAdmin(admin.ModelAdmin):
+    list_display = ("user", "uchastok")
 class MasterdataAdmin(admin.ModelAdmin):
-    list_display = ("kroy_no", "status", "edinitsa", "created")
+    list_display = ("kroy_no", "uchastok","edinitsa", "created", "user")
 class UchastokAdmin(admin.ModelAdmin):
     list_display = ("name",)
 class KroyAdmin(admin.ModelAdmin):
@@ -22,3 +24,4 @@ admin.site.register(Masterdata, MasterdataAdmin)
 admin.site.register(Uchastok, UchastokAdmin)
 admin.site.register(Kroy, KroyAdmin)
 admin.site.register(Kroy_detail, Kroy_detailAdmin)
+admin.site.register(UserUchastok, UserUchastokAdmin)

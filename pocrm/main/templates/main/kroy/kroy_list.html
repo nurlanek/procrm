@@ -41,10 +41,10 @@
                 <td>{{ kroy.created|date:"d.m.Y H:i" }}</td>
                 <td><b>{{ kroy.edinitsa }}</b></td>
                 <td><input class="form-control form-control-sm"  name="edinitsa"  style="width: 50px;" required></td>
-                <td><select class="form-select form-select-sm" aria-label="Default select example" name="status" style="width: 150px;" required>
+                <td><select class="form-select form-select-sm" aria-label="Default select example" name="uchastok" style="width: 150px;" required>
                     <option selected>Выбор участка</option>
                     {% for uchastok in uchastok %}
-                    <option value="{{ uchastok.name }}" required>{{ uchastok.name }}</option>
+                    <option value="{{ uchastok.id  }}" required>{{ uchastok.name }}</option>
                     {% endfor %}
                 </select>
                 </td>
