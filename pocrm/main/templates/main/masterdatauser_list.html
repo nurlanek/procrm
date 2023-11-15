@@ -9,36 +9,23 @@
 
 {% block content %}
 <div class="container">
-<table class="table caption-top">
-        <caption>Рабочий процесс</caption>
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Крой номер</th>
-                <th scope="col">Участок</th>
-                <th scope="col">Единица</th>
-                <th scope="col">Дата</th>
-                <th scope="col">Примечение</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for masterdata in masterdata_list %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ masterdata.kroy_no }}</td>
-                <td>{{ masterdata.uchastok }}</td>
-                <td>{{ masterdata.edinitsa }}</td>
-                <td>{{ masterdata.created|date:"d.m.Y H:i" }}</td>
-                <td>{{ masterdata.description }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6">No records found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<p>Привет, {{ user.username }}</p>
+{% for masterdata in masterdata_list %}
+     <ul>
 
+      <b>{{ forloop.counter }}.</b>
+     <li> Крой номер: {{ masterdata.kroy_no }}</li>
+     <li> Участок: {{ masterdata.uchastok }}</li>
+     <li> Единица: {{ masterdata.edinitsa }}</li>
+     <li> Дата: {{ masterdata.created|date:"d.m.Y H:i" }}</li>
+     <li> Примечение: {{ masterdata.description }}</li>
+         <button class="btn btn-primary btn-block">Завершить</button>
+
+
+    </ul>
+    {% empty %}
+   No records found.
+    {% endfor %}
 </div>
 
 

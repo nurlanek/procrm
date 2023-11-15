@@ -1,8 +1,9 @@
 from django.db import models
-from django.utils.text import slugify
-from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
+def get_default_user():
+    return get_user_model().objects.first()
 
 class Kroy(models.Model):
     class Meta:
@@ -36,6 +37,9 @@ class Kroy_detail(models.Model):
     razmer = models.CharField(max_length=200, verbose_name='Размер')
     rost = models.CharField(max_length=200, verbose_name='Рост')
     stuk = models.IntegerField(verbose_name='Штук')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=get_default_user,
+                             verbose_name='Пользователь')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
 
 
     def __str__(self):
@@ -66,3 +70,10 @@ class UserUchastok(models.Model):
             verbose_name = ('Пользователь для участка')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     uchastok = models.ForeignKey(Uchastok, on_delete=models.CASCADE, verbose_name='Участок')
+
+
+
+
+
+
+

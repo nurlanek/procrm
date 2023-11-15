@@ -15,7 +15,7 @@
                 <a class="nav-link" href="{% url 'kroy-list' %}">Крой</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'kroy-detail-list' %}">Крой детальный</a>
+                <a class="nav-link" href="{% url 'kroy-create' %}">Создать Крой</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'masterdata_list' %}">Рабочий процесс</a>
@@ -24,20 +24,20 @@
         <ul class="navbar-nav ms-auto">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'masterdatauser_list' %}">User</a>
+                    <a class="nav-link" href="{% url 'masterdatauser_list' %}">Личный кабинет</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Выход</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">Привет,{{user.username}} </a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link" href="{% url 'login' %}">Вход</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
                 </li>
             {% endif %}
         </ul>

@@ -9,8 +9,9 @@
 
 {% block content %}
 <div class="container">
+    {% include 'main/kroy/_nav_kroy.html' %}
     {{kroy_detail.id}}
-<a href="{% url 'kroy-detail-create' %}">Создать Новую Крой Деталь</a>
+<!--<a href="{% url 'kroy-detail-create' %}">Создать Новую Крой Деталь</a>-->
      <table class="table caption-top">
   <caption>Крой детальный список</caption>
   <thead>

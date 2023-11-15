@@ -1,5 +1,7 @@
 from django import forms
 from .models import Kroy, Kroy_detail, Masterdata
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 class KroyForm(forms.ModelForm):
     class Meta:
@@ -9,16 +11,17 @@ class KroyForm(forms.ModelForm):
 class KroyDetailForm(forms.ModelForm):
     class Meta:
         model = Kroy_detail
-        fields = ['kroy', 'pachka', 'razmer', 'rost', 'stuk']  # You can specify specific fields if needed
+        fields = ['kroy', 'pachka', 'razmer', 'rost', 'stuk', 'user']  # You can specify specific fields if needed
 
-"""class MasterdataForm(forms.ModelForm):
-    class Meta:
-        model = Masterdata
-        fields = ['kroy_no', 'status', 'edinitsa']
-"""
+    user = forms.ModelChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.HiddenInput(),
+        initial=get_user_model().objects.get(username='admin')
+    )
+
 class MasterdataSearchForm(forms.Form):
-    start_date = forms.DateField(label='Start Date', required=False)
-    end_date = forms.DateField(label='End Date', required=False)
-    status_search = forms.CharField(label='Search by Status', required=False)
-    kroy_no_search = forms.CharField(label='Search by Kroy_no', required=False)
+    start_date = forms.DateField(label='Дата начала', required=False)
+    end_date = forms.DateField(label='Дата окончания', required=False)
+    uchastok_search = forms.CharField(label='Искать по участке', required=False)
+    kroy_no_search = forms.CharField(label='Искать по крой но:', required=False)
 

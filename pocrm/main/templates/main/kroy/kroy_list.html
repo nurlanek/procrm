@@ -10,7 +10,8 @@
 {% block content %}
 
 <div class="container mt-2">
-    <a href="{% url 'kroy-create' %}">Создать новый Крой</a>
+
+   <!-- <a href="{% url 'kroy-create' %}">Создать новый Крой</a>-->
     <table class="table caption-top">
         <caption>Крой Список</caption>
         <thead>
@@ -21,10 +22,8 @@
             <th scope="col">Наименование</th>
             <th scope="col">Дата создание</th>
             <th scope="col">Единица</th>
-
             <th></th>
             <th></th>
-
         </tr>
         </thead>
         <tbody>
@@ -36,6 +35,7 @@
                 <th scope="row">{{ forloop.counter }}</th>
                 <td><a href="{% url 'kroy-detail-view' kroy.pk %}">{{ kroy.kroy_no }}</a>
                     <input class="" id="1" type="hidden" name="kroy_no" value="{{ kroy.kroy_no }}"></td>
+                    <input class=""  type="hidden" name="user" value="{{user.username}}"></td>
                 <td><a href="{% url 'kroy-update' kroy.pk %}">Изменить</a></td>
                 <td>{{ kroy.name|slice:":20" }}</td>
                 <td>{{ kroy.created|date:"d.m.Y H:i" }}</td>
