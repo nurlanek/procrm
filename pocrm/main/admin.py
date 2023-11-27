@@ -16,7 +16,7 @@ class KroyAdmin(admin.ModelAdmin):
     list_editable = ("is_active",)
 
 class Kroy_detailAdmin(admin.ModelAdmin):
-    list_display = ("kroy", "pachka", "razmer", "rost", "stuk" )
+    list_display = ("kroy", "pachka", "razmer", "rost", "stuk", "user" )
     search_fields = ("kroy",)
 
 

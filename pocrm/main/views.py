@@ -52,7 +52,6 @@ def create_masterdata(request):
 
     return render(request, 'main/kroy/kroy_masterdata.html')
 
-
 class MasterdataListView(ListView):
     model = Masterdata
     template_name = 'main/mdata/masterdata_list.html'
@@ -156,18 +155,18 @@ class KroyDetailCreateView(CreateView):
         context['kroy_detail_list'] = Kroy_detail.objects.all().order_by('-created')[:10]  # Add this line to pass the data to the template
         return context
 
-
 class KroyDetailUpdateView(UpdateView):
     model = Kroy_detail
     form_class = KroyDetailForm
     template_name = 'main/kroy/kroy_detail_form.html'
     success_url = '/kroy-detail/'
 
-
-
 @login_required
 def MasterdatauserListView(request):
     # Filter the data based on the logged-in user
-    masterdata_list = Masterdata.objects.filter(user=request.user)
-    return render(request, 'main/masterdatauser_list.html', {'masterdata_list': masterdata_list})
+    context = {
+        'masterdata_list': Masterdata.objects.filter(user=request.user),
+        'kroy_detail_list': Kroy_detail.objects.filter(user=request.user)
+    }
 
+    return render(request, 'main/masterdatauser_list.html', context)

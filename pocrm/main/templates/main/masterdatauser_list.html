@@ -23,8 +23,16 @@
 
 
     </ul>
-    {% empty %}
+        {% empty %}
    No records found.
+    {% endfor %}
+    <p>Одиночка</p>
+    {% for masterdata in kroy_detail_list %}
+    <ul>
+        <li>{{ masterdata.kroy }}крой </li>
+        <li>{{ masterdata.stuk }}штук </li>
+        <li> </li>
+    </ul>
     {% endfor %}
 </div>
 
